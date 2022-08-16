@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import "./App.css";
+// import "./App.css";
 
-import Table from "./Components/Table";
+import TableX from "./Components/Table";
 
 function App() {
   return (
     <div>
-      <Table />
+      <TableX />
     </div>
   );
 }

@@ -1,37 +1,48 @@
 import React, { useState } from "react";
+
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from "@mui/material";
+
 import data from "../mock-data";
-import "../App.css";
 
-const Table = () => {
+export default function TableX() {
   const [contacts, setContacts] = useState(data);
-  const renderedContacts = contacts.map((contact) => {
-    return (
-      <tr>
-        <td>{contact.NAME}</td>
-        <td>{contact.CRN}</td>
-        <td>{contact.GROUP}</td>
-        <td>{contact.BILLING}</td>
-        <td>{contact.actions}</td>
-      </tr>
-    );
-  });
-
   return (
-    <div className="app-container">
-      <table>
-        <thead>
-          <tr>
-            <th>NAME</th>
-            <th>CRN</th>
-            <th>GROUP</th>
-            <th>BILLING</th>
-            <th>ACTIONS</th>
-          </tr>
-        </thead>
-        <tbody>{renderedContacts}</tbody>
-      </table>
-    </div>
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>NAME</TableCell>
+            <TableCell>CRN</TableCell>
+            <TableCell>GROUP</TableCell>
+            <TableCell>BILLING</TableCell>
+            <TableCell>ACTIONS</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {contacts.map((contact) => (
+            <TableRow
+              key={contact.NAME}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {contact.NAME}
+              </TableCell>
+              <TableCell>{contact.CRN}</TableCell>
+              <TableCell>{contact.GROUP}</TableCell>
+              <TableCell>{contact.BILLING}</TableCell>
+              <TableCell>{contact.actions}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
-};
-
-export default Table;
+}
